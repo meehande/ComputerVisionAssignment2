@@ -2,10 +2,14 @@
  * This code is provided as part of "A Practical Introduction to Computer Vision with OpenCV"
  * by Kenneth Dawson-Howe © Wiley & Sons Inc. 2014.  All rights reserved.
  */
-#include "MedianBackground.h"
+#include "Frame.h"
+
+Frame* frame_r1;
+Frame* frame_r2;
 
 int main(int argc, const char** argv)
 {
+
 
 #pragma region INIT
 	char* file_location = "Media/";
@@ -65,39 +69,51 @@ int main(int argc, const char** argv)
 	}
 	
 //MEDIAN SHIFT 1
-	MedianBackground median_background(frames[0], (float) 1.0002,8);
+	MedianBackground median_background(frames[0], (float) 1.001,8);
+	
 	Mat median_background_image, median_foreground_image, median_difference;
 //MEDIAN SHIFT 2
-	MedianBackground median_background_2( frames[0], (float) 1.1,8);
+	MedianBackground median_background_2( frames[0], (float) 1.011,8);
 	Mat median_background_image_2, median_foreground_image_2, median_difference_2;
 	Mat current_frame_2;
 	//imshow("frame 183", frames[183]);
 	Mat difference;
 	//keep updating current frame loop:
-	for(int i = 150; i<250; i++){
-		if(i%5 == 0) {
+	for(int i = 0; i<185; i++){
+	
+		
 		current_frame = frames[i];
+		
 		median_background.UpdateBackground(current_frame);
 		median_background_image = median_background.GetBackgroundImage();
+		
 		absdiff(median_background_image,current_frame,median_difference);
 		cvtColor(median_difference, median_difference, CV_BGR2GRAY);
 		threshold(median_difference,median_difference,30,255,THRESH_BINARY);
 		median_foreground_image.setTo(Scalar(0,0,0));
 		current_frame.copyTo(median_foreground_image, median_difference);
-
+		
 		current_frame_2 = frames[i];
 		median_background_2.UpdateBackground( current_frame_2 );
 		median_background_image_2 = median_background_2.GetBackgroundImage();
-		absdiff(median_background_image_2,current_frame_2,median_difference_2);
+		absdiff(median_background_image_2,current_frame_2,median_difference_2);	
 		cvtColor(median_difference_2, median_difference_2, CV_BGR2GRAY);
 		threshold(median_difference_2,median_difference_2,30,255,THRESH_BINARY);
 		median_foreground_image_2.setTo(Scalar(0,0,0));
-		current_frame.copyTo(median_foreground_image_2, median_difference_2);
-		
+		current_frame_2.copyTo(median_foreground_image_2, median_difference_2);
+		if((i>170)){
+			//imshow("frame %d" + to_string(i), current_frame);
+			//imshow("back 1 %d" + to_string(i), median_background.GetBackgroundImage());
+			//imshow("fore 1 %d" + to_string(i), median_foreground_image);
+			//imshow("diff 1 %d" + to_string(i), median_difference);
+			//imshow("back 2 %d" + to_string(i), median_background_2.GetBackgroundImage());
+			//imshow("fore 2%d" + to_string(i), median_foreground_image_2);
+			//imshow("diff 2 %d" + to_string(i), median_difference_2);
 			absdiff(median_background.GetBackgroundImage(), median_background_2.GetBackgroundImage(), difference);
 			imshow(to_string(i), difference);
+			absdiff(median_difference, median_difference_2, difference);
+			imshow("diff diff"+to_string(i), difference);
 		}
-
 	}
 
 //COMPARE MEDIANS

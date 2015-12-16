@@ -1,4 +1,4 @@
-﻿Build started 05/12/2015 17:28:23.
+﻿Build started 15/12/2015 21:54:03.
      1>Project "C:\Vision\Asssignment3\OpenCVExample\OpenCVExample.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Vision\opencv\build /IC:\Vision\opencv\build\include\opencv /IC:\Vision\opencv\sources\modules\core\include /IC:\Vision\opencv\build\include /IC:\Vision\opencv\sources\modules\imgproc\include /IC:\Vision\opencv\sources\modules\flann\include /IC:\Vision\opencv\sources\modules\videostab\include /IC:\Vision\opencv\sources\modules\ts\include /IC:\Vision\opencv\sources\modules\stitching\include /IC:\Vision\opencv\sources\modules\calib3d\include /IC:\Vision\opencv\sources\modules\photo\include /IC:\Vision\opencv\sources\modules\objdetect\include /IC:\Vision\opencv\sources\modules\video\include /IC:\Vision\opencv\sources\modules\ml\include /IC:\Vision\opencv\sources\modules\features2d\include /IC:\Vision\opencv\sources\modules\highgui\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -21,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.75
+Time Elapsed 00:00:01.86
